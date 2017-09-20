@@ -5,4 +5,4 @@ install:
   - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release ./openweathemapr.api.test/openweathemap.api.test.sln
-  - mono ./packages/xunit.runners.*/tools/xunit.console.exe ./openweathemapr.api.test/openweathemapr.api.test/bin/Release/openweathemap.api.test.dll
+  - mono ./openweathemapr.api.test/packages/xunit.runner.console.2.2.0/tools/xunit.console.exe ./openweathemapr.api.test/openweathemapr.api.test/bin/Release/openweathemap.api.test.dll
