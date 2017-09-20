@@ -1,10 +1,10 @@
 # OpenWeatherMapApiTest
-Welcome to the Test Suite for OpenWeatherApi forecast endpoint.
+Welcome to the test-suite for OpenWeatherApi forecast endpoint for a happy holiday maker scenario.
 
 ## Getting Started
 
-Its quite striaght forward to get started once you clone the repo.
-- Open the solution in visual studio and build the solution.
+### Its quite easy to get started once you clone the repo.
+- Open the solution in visual studio and build the solution. 
 - Place the apikey credential file "AppSettingsSecrets.config" provided in the folder "C:\OpenWeatheMapApiTest". 
   - in case you don't have this just get an api key from https://openweathermap.org/appid and create a file with given name and put below 
      ``` xml
