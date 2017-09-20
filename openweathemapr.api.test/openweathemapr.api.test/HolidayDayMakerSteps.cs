@@ -17,12 +17,14 @@ namespace openweathemap.api.test
 		private DayOfWeek DayOfHoliday { get; set; }
 		private IRestResponse Response { get; set; }
 		private IList<double> MinimumTemp { get; } = new List<double>();
+		private string City { get; set; }
 
 		[Given(@"I like to holiday in (.*)")]
 		public void GivenILikeToHolidayIn(string city)
 		{
+			City = city;
 			string apiKey = ConfigurationManager.AppSettings["apiKey"];
-			OpenWeatherMapUri.Query = "q=" + city + "&units=metric&appid="+ apiKey;
+			OpenWeatherMapUri.Query = "q=" + City + "&units=metric&appid="+ apiKey;
 		}
 
 		[Given(@"I only like to holiday on (.*)")]
@@ -45,6 +47,9 @@ namespace openweathemap.api.test
 		public void ThenIReceiveTheWeatherForecast()
 		{
 			Response.StatusCode.Should().Be(HttpStatusCode.OK,"We need a valid response to know the forecast.");
+			JObject.Parse(Response.Content)["city"]["name"].Value<string>()
+				.Should()
+				.Be(City, "returned forecast should of same city");
 		}
 
 		[Then(@"the temperature is warmer than (.*) degrees")]
