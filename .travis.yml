@@ -1,7 +1,7 @@
 language: csharp
-solution: solution-name.sln
+solution: openweathemap.api.test.sln
 install:
-  - nuget restore openweathemap.api.test.sln
+  - nuget restore ./openweathemapr.api.test/openweathemap.api.test.sln
   - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release solution-name.sln
