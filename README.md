@@ -1,7 +1,7 @@
 # OpenWeatherMapApiTest
 Welcome to the test-suite for OpenWeatherApi forecast endpoint for a happy holiday maker scenario.
 
-https://travis-ci.org/DeveshAcharya/OpenWeatherMapApiTest.svg?branch=master
+<img src="https://travis-ci.org/DeveshAcharya/OpenWeatherMapApiTest.svg?branch=master">
 
 ## Getting Started
 
