@@ -11,7 +11,7 @@ Scenario Outline: A happy holiday maker
 	And the temperature is warmer than <minimum temperature> degrees
 	
 	Examples:
-    | city   | day       | minimum temperature |
-    | Sydney | Thursday  | 10                  |
-    | Moscow | Thursday  | 5                  |
+    | city      | day      | minimum temperature |
+    | Sydney,AU | Thursday | 10                  |
+    | Moscow | Thursday | 5                   |
     

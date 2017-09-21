@@ -75,7 +75,7 @@ namespace openweathemap.api.test.Specs
         [Xunit.TheoryAttribute(DisplayName="A happy holiday maker")]
         [Xunit.TraitAttribute("FeatureTitle", "HolidayDayMaker")]
         [Xunit.TraitAttribute("Description", "A happy holiday maker")]
-        [Xunit.InlineDataAttribute("Sydney", "Thursday", "10", new string[0])]
+        [Xunit.InlineDataAttribute("Sydney,AU", "Thursday", "10", new string[0])]
         [Xunit.InlineDataAttribute("Moscow", "Thursday", "5", new string[0])]
         public virtual void AHappyHolidayMaker(string city, string day, string minimumTemperature, string[] exampleTags)
         {

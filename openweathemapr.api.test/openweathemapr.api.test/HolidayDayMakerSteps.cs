@@ -18,6 +18,7 @@ namespace openweathemap.api.test
 		private IRestResponse Response { get; set; }
 		private IList<double> MinimumTemp { get; } = new List<double>();
 		private string City { get; set; }
+		private JObject ResponseBody { get; set; }
 
 		[Given(@"I like to holiday in (.*)")]
 		public void GivenILikeToHolidayIn(string city)
@@ -47,9 +48,15 @@ namespace openweathemap.api.test
 		public void ThenIReceiveTheWeatherForecast()
 		{
 			Response.StatusCode.Should().Be(HttpStatusCode.OK,"We need a valid response to know the forecast.");
-			JObject.Parse(Response.Content)["city"]["name"].Value<string>()
+			ResponseBody = JObject.Parse(Response.Content);
+			string[] cityAndCountry = City.Split(',');
+			ResponseBody["city"]["name"].Value<string>()
 				.Should()
-				.Be(City, "returned forecast should of same city");
+				.Be(cityAndCountry[0], "returned forecast should of same city");
+			if(cityAndCountry.Length >1)
+				ResponseBody["city"]["country"].Value<string>()
+					.Should()
+					.Be(cityAndCountry[1], "returned forecast should of same country");
 		}
 
 		[Then(@"the temperature is warmer than (.*) degrees")]
