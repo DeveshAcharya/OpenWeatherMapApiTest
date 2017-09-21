@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Net;
 using FluentAssertions;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TechTalk.SpecFlow;
 using RestSharp;
@@ -48,6 +49,10 @@ namespace openweathemap.api.test
 		public void ThenIReceiveTheWeatherForecast()
 		{
 			Response.StatusCode.Should().Be(HttpStatusCode.OK,"We need a valid response to know the forecast.");
+			
+			//assert for json validation.
+			IsValidJson(Response.Content).Should().BeTrue();
+
 			ResponseBody = JObject.Parse(Response.Content);
 			string[] cityAndCountry = City.Split(',');
 			ResponseBody["city"]["name"].Value<string>()
@@ -86,6 +91,31 @@ namespace openweathemap.api.test
 		{
 			var minimumTempForQuarter = forecast["main"]["temp_min"].Value<double>();
 			MinimumTemp.Add(minimumTempForQuarter);
+		}
+		private static bool IsValidJson(string jsonString)
+		{
+			jsonString = jsonString.Trim();
+			if ((jsonString.StartsWith("{") && jsonString.EndsWith("}")) || //For object
+				(jsonString.StartsWith("[") && jsonString.EndsWith("]"))) //For array
+			{
+				try
+				{
+					JToken.Parse(jsonString);
+					return true;
+				}
+				catch (JsonReaderException jex)
+				{
+					//Exception in parsing json
+					Console.WriteLine(jex.Message);
+					return false;
+				}
+				catch (Exception ex) //some other exception
+				{
+					Console.WriteLine(ex.ToString());
+					return false;
+				}
+			}
+			return false;
 		}
 	}
 }

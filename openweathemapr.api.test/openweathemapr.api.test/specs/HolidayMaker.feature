@@ -13,5 +13,5 @@ Scenario Outline: A happy holiday maker
 	Examples:
     | city      | day      | minimum temperature |
     | Sydney,AU | Thursday | 10                  |
-    | Moscow | Thursday | 5                   |
+    | Moscow    | Thursday | 5                   |
     
